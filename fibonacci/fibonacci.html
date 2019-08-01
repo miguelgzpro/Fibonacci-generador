@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Fibonacci</title>
+</head>
+<body>
+<p>Generador de tablas Fibonacci</p>
+    <form action="">
+        <label for="fibonaci1">Primero  : </label>
+        <input type="number" name="fibonaci1" id="fibonaci1">
+        <br>
+        <label for="fibonaci2">Segundo : </label>
+        <input type="number" name="fibonaci2" id="fibonaci2">
+        <br>
+        <label for="maximo">fatal  : </label>
+        <input type="number" name="fatal" id="fatal">
+        <br>
+        <input type="button" value="calculo final" id="botonSolver">
+        
+    </form>
+    <br>
+    <input type="button" value="generar tabla" id="generarTabla">
+    <br>
+
+    <table   border="1" id="generador" class="table table-bordered table-dark" >
+        <tbody id="tabla">
+         <p>tabla fibonacci</p>
+        </tbody>
+        
+    </table>
+
+</body>
+
+<script>
+    function Solver(primero,segundo,fatal) {
+        this.primero =primero ;
+        this.segundo =segundo ;
+        this.fatal =fatal ;
+        this.serie = [];
+        this.generar = generar;
+
+        function generar() {
+            this.serie.push(this.primero)
+            this.serie.push(this.segundo);
+        }
+
+    }
+    
+    var sumaTotal=  []
+    
+    var generadorFibonacci = function(anterior, ultimo) {
+        if (anterior + ultimo > fatalValorSerie) {
+            return sumaTotal;
+        } else {
+            nuevo = anterior + ultimo;
+            sumaTotal.push(nuevo);
+            return generadorFibonacci(ultimo, nuevo);
+        }
+    }
+ 
+    document.getElementById("botonSolver").addEventListener(
+        "click",
+        function() {
+            primeroElemento = parseInt(document.getElementById("fibonaci1").value);
+            segundoElemento = parseInt(document.getElementById("fibonaci2").value);
+            fatalValorSerie = parseInt(document.getElementById("fatal").value);
+            sumaTotal.push(primeroElemento);
+            sumaTotal.push(segundoElemento);
+            generadorFibonacci(primeroElemento, segundoElemento);
+
+        }
+    );
+    var tabal = document.getElementById("tabla");
+    document.getElementById("generarTabla").addEventListener(
+        "click",
+        function() {
+            // divta.style.display = "block"
+
+            for (var i = 0; i < sumaTotal.length; i++) {
+                var tr = document.createElement("tr"+"td"+"td")
+
+                var td = document.createElement("td")
+                    //var td1 = document.createElement("td")
+                    // var td2 = document.createElement("td")
+
+                td.appendChild(document.createTextNode(sumaTotal[i]));
+                // td1.appendChild(document.createTextNode(sumaTotal[i + 1]));
+                // td2.appendChild(document.createTextNode(sumaTotal[i + 2]));
+
+                tr.appendChild(td);
+                // tr.appendChild(td1);
+                //tr.appendChild(td2);
+
+                tabal.appendChild(tr)
+
+            }
+
+        })
+</script>
+</html>
